@@ -30,7 +30,7 @@ class Client extends Component {
             <ClientInfo info={this.state.currentClientInfo} />
             : null
             }
-                           <div className="row row-regular text-center" onClick={this.getClientInfo} id={clientInfo._id}>
+                <div className="row row-regular text-center" onClick={this.getClientInfo} id={clientInfo._id}>
                 {/* <Link to={this.props.link} key={clientInfo.id}> */}
                   <div className="col-md-1">{fullName[0]}</div>
                     <div className="col-md-2">{fullName[1]}</div>

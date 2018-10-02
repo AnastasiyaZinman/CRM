@@ -6,7 +6,9 @@ body{
 text-align: left;
 padding: 20px; 
 }
-
+.table-body{
+  position: relative;
+}
 #main-links > a{
   margin: 10px;
   color: white;

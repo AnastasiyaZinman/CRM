@@ -48,7 +48,7 @@ class Clients extends Component {
     render() {
         console.log("searchWord",this.state.searchWord);
         return (
-            <div>
+            <div className="table-body">
                  <span className="float-left ml-3 mt-2 mb-2">
                  <input type="text" id="search" className="" onChange={this.updateSearchText} value= {this.state.searchWord} placeholder="Search.." /></span>
                  <div className="float-left ml-3 mt-2 mb-2">
