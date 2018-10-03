@@ -45,7 +45,7 @@ class Clients extends Component {
       }
     generateOptions(){
         return this.state.topNames.map((item, i) => {
-            console.log("item",item);
+            // console.log("item",item);
             return (<option
                 value={item.text}
                 key={i}>{item.text}
@@ -69,7 +69,7 @@ class Clients extends Component {
             <div className="table-body">
 
              {this.state.showComponent ?
-            <ClientInfo info={this.state.currentClientInfo} closeBox={this.closeClientInfo}/>
+            <ClientInfo info={this.state.currentClientInfo} updateClientDetails={this.props.updateClientDetails} closeBox={this.closeClientInfo}/>
             : null
             }
                  <span className="float-left ml-3 mt-2 mb-2">

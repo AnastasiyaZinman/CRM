@@ -23,7 +23,9 @@ class App extends Component {
     console.log(myJson)
     this.setState({ clients: myJson })
   }
-
+  updateClientDetails =(id,name,surname,country) =>{
+    console.log("AAAApppppp",id,' ',name,' ',surname, " ",country);
+  }
   render() {
     console.log("Clients:", this.state.clients);
     return (
@@ -31,7 +33,7 @@ class App extends Component {
         <div className="App">
           {/* Routes go here */}
           <Route path="/" component={Home} />
-          <Route path="/clients" exact render={({ match }) => <Clients match={match} getClientInfo={this.getClientInfo} clients={this.state.clients} />} />
+          <Route path="/clients" exact render={({ match }) => <Clients match={match} getClientInfo={this.getClientInfo} clients={this.state.clients} updateClientDetails={this.updateClientDetails}/>} />
           {/* <Route path="/actions" exact render={() => <Actions movies={this.state.movies} changeRentStatus={this.changeRentStatus} budget={this.state.budget}/>} />
         <Route path="/analytics" exact render={({ match }) => <Analytics match= {match} movies={this.state.movies} />} />  */}
         </div>

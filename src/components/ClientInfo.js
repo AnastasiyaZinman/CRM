@@ -5,11 +5,33 @@ class ClientInfo extends Component {
     constructor() {
         super();
         this.state = {
+            newName:'',
+            newSurname: '',
+            newCountry: ''
         }
     }
-    closeBox =()=>{
+    closeBox = () =>{
         this.props.closeBox()
     }
+    updateClientDetails = () =>{
+        this.props.updateClientDetails(this.props.info._id,
+            this.state.newName,this.state.newSurname,this.state.newCountry);
+            this.closeBox();
+    }
+
+    updateName = (e) => {
+        console.log(e.target.value);
+        this.setState({newName: e.target.value})
+    }
+    updateSurname = (e) => {
+        console.log(e.target.value);
+        this.setState({newSurname: e.target.value})
+    }
+    updateCountry = (e) => {
+        console.log(e.target.value);
+        this.setState({newCountry: e.target.value})
+    }
+
     render() {
         console.log("clientInfo page", this.props.info);
         let currentClient = this.props.info;
@@ -23,15 +45,21 @@ class ClientInfo extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col col-w">Name:</div>
-                        <div className="col col-w">{fullName[0]}</div>
+                        <div className="col col-w">
+                        <input type="text" name="fname" onChange={this.updateName} placeholder={fullName[0]}/>
+                        </div>
                         <div className="w-100"></div>
                         <div className="col col-w">Surname:</div>
-                        <div className="col col-w">{fullName[1]}</div>
+                        <div className="col col-w">
+                        <input type="text" name="fname" onChange={this.updateSurname}placeholder={fullName[1]}/>
+                        </div>
                         <div className="w-100"></div>
                         <div className="col col-w">Country:</div>
-                        <div className="col col-w">{currentClient.country}</div>
+                        <div className="col col-w">
+                        <input type="text" name="fname" onChange={this.updateCountry} placeholder={currentClient.country}/>
+                        </div>
                 </div>
-                <button type="button" className="btn btn-info btn-update">Update</button>
+                <button type="button" className="btn btn-info btn-update" onClick={this.updateClientDetails}>Update</button>
                 {/* <input type="button" className="btn btn-info" value="Input Button" /> */}
                 </div>
                 </div>
