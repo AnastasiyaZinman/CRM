@@ -6,30 +6,20 @@ class Client extends Component {
     constructor() {
         super();
         this.state = {
-            showComponent: false,
-            currentClientInfo:''
+           
         }
     }
-    // getClientInfo = () => {
-    //     this.props.getClientInfo(this.props.info._id);
-    // }
-    getClientInfo =() => {
-        console.log("currentClientID ",this.props.info);
-            this.setState({
-              showComponent: true,
-              currentClientInfo: this.props.info 
-          })
-      }
+    getClientInfo = () => {
+        console.log("info",this.props.info);
+        this.props.getClientInfo(this.props.info);
+    }
+   
     render() {
         const clientInfo=this.props.info;
         const fullName=clientInfo.name.split(" ");
         // console.log("ClientInfo",fullName[0], " ", fullName[1]);
         return (
-            <div>
-            {this.state.showComponent ?
-            <ClientInfo info={this.state.currentClientInfo} />
-            : null
-            }
+
                 <div className="row row-regular text-center" onClick={this.getClientInfo} id={clientInfo._id}>
                 {/* <Link to={this.props.link} key={clientInfo.id}> */}
                   <div className="col-md-1">{fullName[0]}</div>
@@ -41,7 +31,6 @@ class Client extends Component {
                     <div className="col-md-2">{clientInfo.owner}</div>
                 {/* </Link> */}
                 </div>
-            </div>
         )
     }
 }

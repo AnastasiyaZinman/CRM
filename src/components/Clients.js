@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Client from './Client.js'
+import Client from './Client.js';
+import ClientInfo from './ClientInfo';
 class Clients extends Component {
     constructor() {
         super();
@@ -12,7 +13,9 @@ class Clients extends Component {
                       {text:"Email",colSize:3},
                       {text:"Sold",colSize:1},
                       {text:"Owner",colSize:2}],
-            searchWord:""
+            searchWord:"",
+            showComponent: false,
+            currentClientInfo:''
         }
     }
     generateRowsInfo(){
@@ -23,9 +26,17 @@ class Clients extends Component {
                 // getClientInfo={this.props.getClientInfo}
                 info={item}
                 key={i} 
+                getClientInfo={this.getClientInfo}
               />)   //the power of JSX!
         })  
     }
+    getClientInfo =(info) => {
+        console.log("currentClientID ",info);
+            this.setState({
+              showComponent: true,
+              currentClientInfo: info 
+          })
+      }
     generateOptions(){
         return this.state.topNames.map((item, i) => {
             console.log("item",item);
@@ -49,6 +60,10 @@ class Clients extends Component {
         console.log("searchWord",this.state.searchWord);
         return (
             <div className="table-body">
+             {this.state.showComponent ?
+            <ClientInfo info={this.state.currentClientInfo} />
+            : null
+            }
                  <span className="float-left ml-3 mt-2 mb-2">
                  <input type="text" id="search" className="" onChange={this.updateSearchText} value= {this.state.searchWord} placeholder="Search.." /></span>
                  <div className="float-left ml-3 mt-2 mb-2">
