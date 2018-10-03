@@ -13,19 +13,17 @@ class Client extends Component {
    
     render() {
         const clientInfo=this.props.info;
-        const fullName=clientInfo.name.split(" ");
-        // console.log("ClientInfo",fullName[0], " ", fullName[1]);
+        // console.log("clientInfo",clientInfo);
+        const fullName = clientInfo.name.split(" "); //Split a string into an array of substrings
         return (
                 <div className="row row-regular text-center" onClick={this.getClientInfo} id={clientInfo._id}>
-                {/* <Link to={this.props.link} key={clientInfo.id}> */}
                   <div className="col-md-1">{fullName[0]}</div>
                     <div className="col-md-2">{fullName[1]}</div>
                     <div className="col-md-1">{clientInfo.country}</div>
                     <div className="col-md-2 email">{clientInfo["firstContact"].slice(0,10)}</div>
-                    <div className="col-md-3 email"> {clientInfo.email}</div>
-                    <div className="col-md-1">{(clientInfo.sold)?"YES":"Nooo"}</div>
+                    <div className="col-md-3 email"> {(clientInfo.emailType)?clientInfo.emailType:"-"}</div>
+                    <div className="col-md-1">{(clientInfo.sold) ? <span>&#10003;</span> : <span>&#10008;</span>}</div>
                     <div className="col-md-2">{clientInfo.owner}</div>
-                {/* </Link> */}
                 </div>
         )
     }

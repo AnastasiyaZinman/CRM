@@ -6,7 +6,7 @@ import './App.css';
 import myJson from './components/data.json';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Actions from './components/Actions.js';
-import Home from './components/Home.js';
+import Menu from './components/Menu.js';
 import Clients from './components/Clients.js';
 
 class App extends Component {
@@ -56,7 +56,7 @@ class App extends Component {
       <Router>
         <div className="App">
           {/* Routes go here */}
-          <Route path="/" component={Home} />
+          <Route path="/" component={Menu} />
           <Route path="/clients" exact render={({ match }) => 
           <Clients match={match} clients={this.state.clients} updateClientDetails={this.updateClientDetails}/>} />
            <Route path="/actions" exact render={() => <Actions clients={this.state.clients}/>} />
