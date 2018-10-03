@@ -5,7 +5,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import myJson from './components/data.json';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-// import ClientInfo from './components/ClientInfo.js';
+import Actions from './components/Actions.js';
 import Home from './components/Home.js';
 import Clients from './components/Clients.js';
 
@@ -59,8 +59,8 @@ class App extends Component {
           <Route path="/" component={Home} />
           <Route path="/clients" exact render={({ match }) => 
           <Clients match={match} clients={this.state.clients} updateClientDetails={this.updateClientDetails}/>} />
-          {/* <Route path="/actions" exact render={() => <Actions movies={this.state.movies} changeRentStatus={this.changeRentStatus} budget={this.state.budget}/>} />
-        <Route path="/analytics" exact render={({ match }) => <Analytics match= {match} movies={this.state.movies} />} />  */}
+           <Route path="/actions" exact render={() => <Actions clients={this.state.clients}/>} />
+        {/* <Route path="/analytics" exact render={({ match }) => <Analytics match= {match} movies={this.state.movies} />} />   */}
         </div>
       </Router>
     );

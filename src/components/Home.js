@@ -8,7 +8,6 @@ class Home extends Component {
     }
  render() {
     return (
-<div>
 <div id="main-links" className="App-header">
 
           {/* Main Links */}
@@ -16,10 +15,8 @@ class Home extends Component {
           <Link to="/actions">actions</Link>
           <Link to="/analytics">analytics</Link>
 </div>
-{/* <div>
-    <img className="main-img" src={mainImg} alt="crm"/>
-</div> */}
-</div>
-)
- }}
+//  <div>
+//     <img className="main-img" src={mainImg} alt="crm"/>
+// </div> 
+    )}}
 export default Home;
