@@ -2,6 +2,10 @@ body{
   background-color: white;
   color: black;
 }
+.main-img{
+width:300px;
+margin:10px auto;
+}
 #main-links{
 text-align: left;
 padding: 20px; 

@@ -15,15 +15,24 @@ class Clients extends Component {
                       {text:"Owner",colSize:2}],
             searchWord:"",
             showComponent: false,
-            currentClientInfo:''
+            currentClientInfo:'',
+            selectedOption: "name"
         }
     }
+    filterClientsInfo = (clients) => {
+       const filterValue = this.state.selectedOption.toLowerCase(); 
+       console.log("filterValue", filterValue);
+    // clientData["name"].substring(0, clientData["name"].IndexOf(" ")).toLowerCase().includes(this.state.searchWord));
+    // return clients.filter(clientData => clientData["name"].substring(clientData["name"].IndexOf(" ")).toLowerCase().includes(this.state.searchWord));
+      return clients.filter(clientData => clientData[filterValue].toLowerCase().includes(this.state.searchWord));
+      }
     generateRowsInfo(){
-        const clientInfo = this.props.clients;
+        // const clientInfo = this.props.clients;
+        // console.log("this.props.clients",this.props.clients);
+        const clientInfo= this.filterClientsInfo(this.props.clients);
         return clientInfo.map((item, i) => {
             // console.log("item",item);s
             return (<Client 
-                // getClientInfo={this.props.getClientInfo}
                 info={item}
                 key={i} 
                 getClientInfo={this.getClientInfo}
@@ -43,10 +52,15 @@ class Clients extends Component {
               currentClientInfo: '' 
           })
       }
+      updateSelectedOption = (e) => {
+        console.log("selected value",e.target.value);
+        this.setState({selectedOption: e.target.value})
+      }
     generateOptions(){
         return this.state.topNames.map((item, i) => {
             // console.log("item",item);
-            return (<option
+            if (item.text!=="Surname") 
+            return (<option 
                 value={item.text}
                 key={i}>{item.text}
                </option>)   //the power of JSX!
@@ -75,7 +89,7 @@ class Clients extends Component {
                  <span className="float-left ml-3 mt-2 mb-2">
                  <input type="text" id="search" className="" onChange={this.updateSearchText} value= {this.state.searchWord} placeholder="Search.." /></span>
                  <div className="float-left ml-3 mt-2 mb-2">
-                    <select>
+                    <select onChange={this.updateSelectedOption} value={this.state.selectedOption}>
                     {this.generateOptions()}
                     </select> 
                 </div>
