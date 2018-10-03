@@ -1,29 +1,42 @@
 import React, { Component } from 'react';
 import './clientInfo.css';
+// import '../../node_modules/bootstrap/dist/js/bootstrap.min.js';
 class ClientInfo extends Component {
     constructor() {
         super();
-        this.state = {}
+        this.state = {
+        }
+    }
+    closeBox =()=>{
+        this.props.closeBox()
     }
     render() {
         console.log("clientInfo page", this.props.info);
         let currentClient = this.props.info;
+        const fullName = currentClient.name.split(" ");
         return (
-           
-                <div className="modal-body">
-                <button type="button" className="close" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+            <div className="modal-body">
+                <button type="button" className="close" onClick={this.closeBox}>
+                    <span aria-hidden="true">&times;</span>
                 </button>
-                    <h5>Popover in a modal</h5>
-                    <p>This <a href="#" role="button" className="btn btn-secondary popover-test" title="Popover title" data-content="Popover body content is set in this attribute.">button</a> triggers a popover on click.</p>
-                    <hr />
-                    <h5>Tooltips in a modal</h5>
-                    <p><a href="#" className="tooltip-test" title="Tooltip">This link</a> and <a href="#" className="tooltip-test" title="Tooltip">that link</a> have tooltips on hover.</p>
-                <p>{currentClient.name}</p>
-                <p>{currentClient.email}</p>
+                <h5>Change Details</h5>
+                <div className="container">
+                    <div className="row">
+                        <div className="col col-w">Name:</div>
+                        <div className="col col-w">{fullName[0]}</div>
+                        <div className="w-100"></div>
+                        <div className="col col-w">Surname:</div>
+                        <div className="col col-w">{fullName[1]}</div>
+                        <div className="w-100"></div>
+                        <div className="col col-w">Country:</div>
+                        <div className="col col-w">{currentClient.country}</div>
                 </div>
-        
-        )
-    }
-}
+                <button type="button" className="btn btn-info btn-update">Update</button>
+                {/* <input type="button" className="btn btn-info" value="Input Button" /> */}
+                </div>
+                </div>
+
+                )
+            }
+        }
 export default ClientInfo;

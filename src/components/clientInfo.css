@@ -1,6 +1,6 @@
 .modal-body{
   position: absolute;
-  margin-top:50px;
+  margin-top: 150px;
   margin-left:500px;
   width:500px;
   z-index: 10;
@@ -8,4 +8,18 @@
   box-shadow: 5px 5px 5px grey;
   border-radius: 10px;
     border: 1px solid rgb(44, 44, 44);
+}
+.col-w{
+  margin-top:20px;
+}
+.btn-update{
+width:130px;
+background-color: #f3d036;
+border: none ;
+}
+.btn-update:hover{
+  background-color: rgb(122, 122, 122);
+}
+.btn-update:checked{
+  background-color: rgb(65, 63, 63);
 }

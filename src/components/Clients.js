@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Client from './Client.js';
 import ClientInfo from './ClientInfo';
 class Clients extends Component {
@@ -37,6 +37,12 @@ class Clients extends Component {
               currentClientInfo: info 
           })
       }
+      closeClientInfo =() => {
+            this.setState({
+              showComponent: false,
+              currentClientInfo: '' 
+          })
+      }
     generateOptions(){
         return this.state.topNames.map((item, i) => {
             console.log("item",item);
@@ -56,12 +62,14 @@ class Clients extends Component {
             console.log(e.target.value);
             this.setState({searchWord: e.target.value})
           }
+         
     render() {
         console.log("searchWord",this.state.searchWord);
         return (
             <div className="table-body">
+
              {this.state.showComponent ?
-            <ClientInfo info={this.state.currentClientInfo} />
+            <ClientInfo info={this.state.currentClientInfo} closeBox={this.closeClientInfo}/>
             : null
             }
                  <span className="float-left ml-3 mt-2 mb-2">
@@ -73,13 +81,6 @@ class Clients extends Component {
                 </div>
                 <div className="row row-main rounded">
                 {this.generateTopRow()}
-                    {/* <div className="col-md-1">Name</div>
-                    <div className="col-md-2">Surname</div>
-                    <div className="col-md-1">Country</div>
-                    <div className="col-md-2">First Contract</div>
-                    <div className="col-md-3">Email</div>
-                    <div className="col-md-1">Sold</div>
-                    <div className="col-md-2">Owner</div> */}
                 </div> 
                 <span>{this.generateRowsInfo()}</span>
             </div>
