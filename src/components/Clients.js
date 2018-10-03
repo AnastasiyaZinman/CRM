@@ -109,6 +109,7 @@ class Clients extends Component {
                     <select onChange={this.updateSelectedOption} value={this.state.selectedOption}>
                     {this.generateOptions()}
                     </select> 
+                 <span className="ml-2">{this.state.selectedOption==="sold"? "*for search write 'yes' or 'no'": null }</span>
                 </div>
                 <div className="row row-main rounded">
                 {this.generateTopRow()}
