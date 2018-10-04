@@ -36,7 +36,17 @@ class App extends Component {
     this.setState({ clients: newState });
     console.log("NEW LINE", this.state.clients[clientIndex])
   }
+  findClientItemByName(name){
+    alert(name);
+   
+    return this.state.clients.filter(clientData => {
+      console.log("clientData",clientData);
+      return clientData.name===name
+    });
+
+  }
   createNewClient = (name, surname, country, owner) => {
+    console.log("FINF ROW",this.findClientItemByName(this.joinNameAndSername(name,surname)));
     // let newState = [...this.state.clients];
     // newState.add(clientItem, name, surname, country);
 
