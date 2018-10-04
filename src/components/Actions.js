@@ -4,15 +4,41 @@ class Actions extends Component {
     constructor() {
         super();
         this.state = {
-
+            clientsNames : [],
+            ownersNames : []
         }
+    }
+    generateClientsNames(){
+        console.log("this.props.clients",this.props.clients);
+        var clientsNames = new Set();
+        this.props.clients.forEach(element => {
+            let nameAndId={"name":element['name'],"id":element["_id"]};
+            clientsNames.add(nameAndId);
+        }); 
+        let dataArr = Array.from(clientsNames);
+        console.log("clientsNames",dataArr);
+        return this.generateOptions(dataArr);
+        
+    }
+    generateOptions (data){
+        console.log("data",data);
+        return data.map((item,i) =>{
+                    return (<option 
+                        value={item.id}
+                        key={i++}>{item.name}
+                       </option>)
+            })
     }
 
     render() {
     return (
         <div className="action-box">
          <h3>UPDATE</h3>
-         <div className="col  ">Client:  <select /></div>
+         <div className="col  ">Client:  
+         <select>
+             {this.generateClientsNames()}
+        </select>
+         </div>
          
         <div className="row action-box">
             <div className="col-md-3  ">
