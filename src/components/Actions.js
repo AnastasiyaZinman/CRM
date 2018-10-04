@@ -11,7 +11,7 @@ class Actions extends Component {
         }
     }
     generateOptionsSet(property){
-        console.log("this.props.clients",this.props.clients);
+        // console.log("this.props.clients",this.props.clients);
         let dataArr=[];
         var clientsNames = new Set(dataArr);
         this.props.clients.forEach(element => {
@@ -22,7 +22,7 @@ class Actions extends Component {
         return this.generateOptions(dataArr);
     }
     generateOptions (data){
-        console.log("data",data);
+        // console.log("data",data);
         return data.map((item,i) =>{
             return (<option 
             value={item}

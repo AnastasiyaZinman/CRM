@@ -4,9 +4,27 @@ import './actions.css';
 class AddClient extends Component {
     constructor() {
         super();
-        this.state = {}
+        this.state = {
+            firstName:'',
+            sername:'',
+            countryName:'',
+            ownerName:''
+        }
     }
+    updateFirstName = (e) => {
+        this.setState({firstName: e.target.value})
+      }
+      updateSurname = (e) => {
+        this.setState({sername: e.target.value})
+      }
+      updateCountryName = (e) => {
+        this.setState({countryName: e.target.value})
+      }
+      updateOwnerName = (e) => {
+        this.setState({ownerName: e.target.value})
+      }
     render(){
+        console.log("stateAddClients",this.state);
     return (
             <div>
             <h3>ADD CLIENT</h3>
@@ -15,28 +33,28 @@ class AddClient extends Component {
             First name:
              </div>
              <div className="col-md-1">
-            <input type="text" />
+            <input type="text" onChange={this.updateFirstName}/>
             </div>
              <div className="w-100 mt-2"></div>
              <div className="col-md-2  ">
             Surname name:
              </div>
              <div className="  col-md-1">
-            <input type="text" />
+            <input type="text" onChange={this.updateSurname}/>
             </div>
             <div className="w-100 mt-2"></div>
              <div className="col-md-2  ">
             Country name:
              </div>
              <div className=" col-md-1">
-            <input type="text" />
+            <input type="text" onChange={this.updateCountryName}/>
             </div>
             <div className="w-100 mt-2"></div>
              <div className="col-md-2  ">
             Owner name:
              </div>
              <div className="  col-md-1">
-            <input type="text" />
+            <input type="text" onChange={this.updateOwnerName}/>
             </div>
             </div>
             <button type="button" className="btn add-n-c btn-outline-warning">Add new Client</button>
