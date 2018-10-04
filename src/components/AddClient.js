@@ -31,13 +31,16 @@ class AddClient extends Component {
         if (newName || newSurname || newCountry||newOwner) 
         this.props.createNewClient(newName,newSurname,newCountry,newOwner);
         else alert ("Fill all data!");
-        // this.clearInputs();
+        this.clearInputs();
         }
-        // clearInputs(){
-
-        // }
+        clearInputs(){
+            this.inputFirstName.value = "";
+            this.inputSurname.value = "";
+            this.inputCountryName.value = "";
+            this.inputOwnerName.value = "";
+        }
     render(){
-        console.log("stateAddClients",this.state);
+        console.log("thisstate",this.state);
     return (
             <div>
             <h3>ADD CLIENT</h3>
@@ -46,28 +49,28 @@ class AddClient extends Component {
             First name:
              </div>
              <div className="col-md-1">
-            <input type="text" onChange={this.updateFirstName}/>
+            <input type="text" onChange={this.updateFirstName} ref={el => this.inputFirstName = el}/>
             </div>
              <div className="w-100 mt-2"></div>
              <div className="col-md-2  ">
             Surname name:
              </div>
              <div className="  col-md-1">
-            <input type="text" onChange={this.updateSurname}/>
+            <input type="text" onChange={this.updateSurname} ref={el => this.inputSurname = el}/>
             </div>
             <div className="w-100 mt-2"></div>
              <div className="col-md-2  ">
             Country name:
              </div>
              <div className=" col-md-1">
-            <input type="text" onChange={this.updateCountryName}/>
+            <input type="text" onChange={this.updateCountryName} ref={el => this.inputCountryName = el}/>
             </div>
             <div className="w-100 mt-2"></div>
              <div className="col-md-2  ">
             Owner name:
              </div>
              <div className="  col-md-1">
-            <input type="text" onChange={this.updateOwnerName}/>
+            <input type="text" onChange={this.updateOwnerName} ref={el => this.inputOwnerName = el}/>
             </div>
             </div>
             <button type="button" onClick={this.createNewClient} className="btn add-n-c btn-outline-warning">Add new Client</button>
