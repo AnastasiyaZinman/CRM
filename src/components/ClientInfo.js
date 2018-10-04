@@ -14,8 +14,12 @@ class ClientInfo extends Component {
         this.props.closeBox()
     }
     updateClientDetails = () => {
-        this.props.updateClientDetails(this.props.info._id,
-            this.state.newName, this.state.newSurname, this.state.newCountry);
+    let id = this.props.info._id,
+        newName = this.state.newName, 
+        newSurname = this.state.newSurname, 
+        newCountry = this.state.newCountry;
+        if (newName || newSurname || newCountry) this.props.updateClientDetails(id,newName,newSurname,newCountry);
+        else alert ("Nothing change!");
         this.closeBox();
     }
 

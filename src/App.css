@@ -20,8 +20,9 @@ padding: 20px;
 }
 .row{
   width:97%; 
+  padding: 15px 0;
   text-align: center;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 10px;
 }
 .row-main {

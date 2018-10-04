@@ -34,8 +34,14 @@ class App extends Component {
 
   }
   changeDataItem(clientItem, n, s, c){
-  clientItem["name"] = n + ' ' + s;
+  if (n && s)
+  {
+    clientItem["name"] = n + ' ' + s;
+  }
+  else if (n||s) alert("Please, change fuul name. Name hasn't changed");
+  if (c){
   clientItem["country"] = c;
+  }
   return clientItem;
   }
   findClientItem(id){
