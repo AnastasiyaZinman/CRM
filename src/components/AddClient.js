@@ -28,7 +28,7 @@ class AddClient extends Component {
             newSurname = this.state.surname, 
             newCountry = this.state.countryName,
             newOwner = this.state.ownerName;
-        if (newName || newSurname || newCountry||newOwner) 
+        if (newName && newSurname && newCountry && newOwner) 
         this.props.createNewClient(newName,newSurname,newCountry,newOwner);
         else alert ("Fill all data!");
         this.clearInputs();
