@@ -39,7 +39,7 @@ class AddClient extends Component {
             <input type="text" />
             </div>
             </div>
-            <button type="button" class="btn add-n-c btn-outline-warning">Add new Client</button>
+            <button type="button" className="btn add-n-c btn-outline-warning">Add new Client</button>
    </div>
     )
 }}
