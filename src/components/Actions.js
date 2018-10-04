@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './actions.css';
+import AddClient from "./AddClient.js"
 class Actions extends Component {
     constructor() {
         super();
@@ -16,7 +17,7 @@ class Actions extends Component {
             clientsNames.add(element[property]);
         }); 
         dataArr=[...clientsNames]
-        console.log("clientsNames",clientsNames);
+        // console.log("clientsNames",clientsNames);
         return this.generateOptions(dataArr);
     }
     generateOptions (data){
@@ -49,7 +50,7 @@ class Actions extends Component {
             </select>
             </div>
             <div className="  col-md-1">
-            <button type="button">transfer</button>
+            <button type="button" class="btn update-btns btn-outline-warning">transfer</button>
             </div>
              <div className="w-100 mt-2"></div>
              <div className="col-md-2">Send email:</div>
@@ -59,52 +60,20 @@ class Actions extends Component {
             </select>
              </div>
              <div className="col-md-1">
-             <button type="button">send</button>
+             <button type="button" class="btn update-btns btn-outline-warning">send</button>
              </div>
              <div className="w-100 mt-2"></div>
              <div className="col-md-2  ">declare sale!</div>
              <div className="col-md-2">
              </div>
              <div className="col-md-1">
-             <button type="button">declare</button>
+             <button type="button" class="btn update-btns btn-outline-warning">Declare</button>
              </div>
      </div>
 
         <hr/>
-        <h3>ADD CLIENT</h3>
-        <div className="row action-box">
-            <div className="col-md-2  ">
-            First name:
-             </div>
-             <div className="col-md-1">
-            <input type="text" />
-            </div>
-             <div className="w-100 mt-2"></div>
-             <div className="col-md-2  ">
-            Surname name:
-             </div>
-             <div className="  col-md-1">
-            <input type="text" />
-            </div>
-            <div className="w-100 mt-2"></div>
-             <div className="col-md-2  ">
-            Country name:
-             </div>
-             <div className=" col-md-1">
-            <input type="text" />
-            </div>
-            <div className="w-100 mt-2"></div>
-             <div className="col-md-2  ">
-            Owner name:
-             </div>
-             <div className="  col-md-1">
-            <input type="text" />
-            </div>
-            </div>
-    
-        <button type="button">Add new Client</button>
-    </div>
-
+        <AddClient clients={this.props.clients}/>
+        </div>
    )}
 }
 export default Actions;

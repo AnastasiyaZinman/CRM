@@ -22,7 +22,7 @@ class Client extends Component {
                     <div className="col-md-1">{clientInfo.country}</div>
                     <div className="col-md-2 email">{clientInfo["firstContact"].slice(0,10)}</div>
                     <div className="col-md-3 email"> {(clientInfo.emailType)?clientInfo.emailType:"-"}</div>
-                    <div className="col-md-1">{(clientInfo.sold) ? <span>&#10003;</span> : <span>&#10008;</span>}</div>
+                    <div className="col-md-1">{(clientInfo.sold) ? <span>&#10003;</span> : <span>&#10007;</span>}</div>
                     <div className="col-md-2">{clientInfo.owner}</div>
                 </div>
         )
