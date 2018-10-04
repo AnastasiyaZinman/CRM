@@ -6,7 +6,7 @@ class AddClient extends Component {
         super();
         this.state = {
             firstName:'',
-            sername:'',
+            surname:'',
             countryName:'',
             ownerName:''
         }
@@ -15,7 +15,7 @@ class AddClient extends Component {
         this.setState({firstName: e.target.value})
       }
       updateSurname = (e) => {
-        this.setState({sername: e.target.value})
+        this.setState({surname: e.target.value})
       }
       updateCountryName = (e) => {
         this.setState({countryName: e.target.value})
@@ -23,6 +23,19 @@ class AddClient extends Component {
       updateOwnerName = (e) => {
         this.setState({ownerName: e.target.value})
       }
+      createNewClient = () => {
+        let newName = this.state.firstName, 
+            newSurname = this.state.surname, 
+            newCountry = this.state.countryName,
+            newOwner = this.state.ownerName;
+        if (newName || newSurname || newCountry||newOwner) 
+        this.props.createNewClient(newName,newSurname,newCountry,newOwner);
+        else alert ("Fill all data!");
+        // this.clearInputs();
+        }
+        // clearInputs(){
+
+        // }
     render(){
         console.log("stateAddClients",this.state);
     return (
@@ -57,7 +70,7 @@ class AddClient extends Component {
             <input type="text" onChange={this.updateOwnerName}/>
             </div>
             </div>
-            <button type="button" className="btn add-n-c btn-outline-warning">Add new Client</button>
+            <button type="button" onClick={this.createNewClient} className="btn add-n-c btn-outline-warning">Add new Client</button>
    </div>
     )
 }}

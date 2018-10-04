@@ -23,7 +23,7 @@ class App extends Component {
     console.log(myJson)
     this.setState({ clients: myJson })
   }
-  updateClientDetails = (id,name,surname,country) =>{
+  updateClientDetails = (name,surname,country,id) =>{
   const clientIndex = this.findClientIndex(id);
   let newState = [...this.state.clients];
   let clientItem = newState[clientIndex];
@@ -31,12 +31,23 @@ class App extends Component {
   newState[clientIndex] = clientItem;
   this.setState({clients: newState});
   console.log("NEW LINE",this.state.clients[clientIndex])
-
   }
+  createNewClient = (name,surname,country,owner) =>{
+    // let newState = [...this.state.clients];
+    // newState.add(clientItem, name, surname, country);
+ 
+    console.log("Add to DB")
+    }
+
+ joinNameAndSername(name,surname){
+  return (name + ' ' + surname)
+ }
+
   changeDataItem(clientItem, n, s, c){
   if (n && s)
   {
-    clientItem["name"] = n + ' ' + s;
+    clientItem["name"] =this.joinNameAndSername(n,s);
+    // alert(clientItem["name"])
   }
   else if (n||s) alert("Please, change fuul name. Name hasn't changed");
   if (c){
@@ -65,7 +76,7 @@ class App extends Component {
           <Route path="/" component={Menu} />
           <Route path="/clients" exact render={({ match }) => 
           <Clients match={match} clients={this.state.clients} updateClientDetails={this.updateClientDetails}/>} />
-           <Route path="/actions" exact render={() => <Actions clients={this.state.clients}/>} />
+           <Route path="/actions" exact render={() => <Actions clients={this.state.clients} createNewClient={this.createNewClient}/>} />
         {/* <Route path="/analytics" exact render={({ match }) => <Analytics match= {match} movies={this.state.movies} />} />   */}
         </div>
       </Router>
