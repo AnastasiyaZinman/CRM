@@ -17,16 +17,16 @@ app.use(function (req, res, next) {
 mongoose.connect('mongodb://localhost/crmDB', function() {
   console.log("DB connection established!!!");
 })
-let myJson = require('../components/data.json'); 
+// let myJson = require('../components/data.json'); 
   // console.log('JSON',myJson);
-  
+
 //PUSH FROM JSON FILE TO MONGODB
-for(let item=0; item<myJson.length;item++)
-{
-  console.log(myJson[item]);
-  let client=new Client(myJson[item]);
-  client.save();
-}
+// for(let item=0; item<myJson.length;item++)
+// {
+//   console.log(myJson[item]);
+//   let client=new Client(myJson[item]);
+//   client.save();
+// }
 
 
 app.get('/', function (req, res) {
