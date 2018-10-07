@@ -23,16 +23,18 @@ let clientSchema = new mongoose.Schema({
   "owner": String,
   "country": String
 });
-let myJson = require('../components/data.json');
+let myJson = require('../components/data.json'); 
   // console.log('JSON',myJson);
 
 let Client = mongoose.model('Client', clientSchema);
+//PUSH FROM JSON FILE TO MONGODB
 for(let item=0; item<myJson.length;item++)
 {
   console.log(myJson[item]);
   let client=new Client(myJson[item]);
   client.save();
 }
+
 
 app.get('/', function (req, res) {
     res.send('Hello World!');
@@ -42,7 +44,12 @@ app.get('/popUldateDatabase', function (req, res) {
 });
 app.get('/getData', function (req, res) {
     // res.json(fakeDb);
-    res.json(myJson);
+  Client.find(function (error, result){
+  if(error) { return console.error(error); }
+  console.log (result);
+  res.json(result);
+});
+    
 });
 
 app.listen(SERVER_PORT, function () {
