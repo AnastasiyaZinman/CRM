@@ -13,7 +13,7 @@ router.post('/addClient', jsonParser, function (req, res) {
     var newClient = new Client({
       "name": req.body.name,
       "email": req.body.email,
-      "firstContact": "0101",
+      "firstContact": new Date() ,
       "emailType": ' ',
       "sold": false,
       "owner": req.body.ownerName,
@@ -30,3 +30,4 @@ router.post('/addClient', jsonParser, function (req, res) {
       }
     );
   })
+  module.exports = router;

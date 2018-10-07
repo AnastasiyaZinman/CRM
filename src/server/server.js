@@ -46,14 +46,14 @@ app.get('/getClientInfo', function (req, res) {
 });
 
 //------------------------
-// app.use(bodyParser.json()); 
-// app.use(express.static('public'));
-// app.use(express.static('node_modules'));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json()); 
+app.use(express.static('public'));
+app.use(express.static('node_modules'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// const api = require('./routes/api')
-// app.use('/', api)
+const api = require('../routes/api')
+app.use('/', api)
 //---------------------------------
 app.listen(SERVER_PORT, function () {
     console.log('Example app listening on port 5000!');
