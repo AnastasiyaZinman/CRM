@@ -3,7 +3,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import '../node_modules/font-awesome/css/font-awesome.css';
 import axios from 'axios';
 import './App.css';
-import myJson from './components/data.json';
+// import myJson from './components/data.json';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Actions from './components/Actions.js';
 import Menu from './components/Menu.js';
