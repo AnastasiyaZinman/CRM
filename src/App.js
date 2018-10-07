@@ -25,7 +25,6 @@ class App extends Component {
       console.log(result.data);
       this.setState({ clients: result.data })
     })
-
   }
   updateClientDetails = (name, surname, country, id) => {
     const clientIndex = this.findClientIndex(id);
