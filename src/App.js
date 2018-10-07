@@ -13,7 +13,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      clients: []
+      clients: [],
+      newId: 0
     }
   }
   componentDidMount() {
@@ -44,14 +45,49 @@ class App extends Component {
     });
 
   }
+  updateClientsDetailsByName(name){
+    this.findClientItemByName(name)
+  }
   createNewClient = (name, surname, country, owner) => {
-    console.log("FIND ROW",this.findClientItemByName(this.joinNameAndSername(name,surname)));
-    // let newState = [...this.state.clients];
-    // newState.add(clientItem, name, surname, country);
-
+    let clientName =this.joinNameAndSername(name,surname);
+    console.log('login clicked')
+    let data = {
+        name: clientName,
+        countryName: country,
+        ownerName:owner
+    }
+    axios.post('http://localhost:5000/addClient', data, {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    )
+    .then(response => {
+      console.log("response",response.data.client_id);
+      this.addNewClientToState(response.data.client_id,name,country,owner)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    this.addNewClientToState(clientName,country,owner);
     console.log("Add to DB")
   }
-
+  addNewClientToState =(id,name,country,owner)=>{
+     let newState= [...this.state.clients],
+     newClient={
+       "_id": id,
+      "name": name,
+      "email": "aaa@gmail.com",
+      "firstContact": new Date() ,
+      "emailType": '',
+      "sold": false,
+      "owner": owner,
+      "country": country
+     };
+     newState.push(newClient);
+     this.setState({clients: newState})
+     console.log("new state client",this.state.clients[this.state.clients.length-1]);
+  }
   joinNameAndSername(name, surname) {
     return (name + ' ' + surname)
   }

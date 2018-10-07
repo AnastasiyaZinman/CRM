@@ -8,26 +8,34 @@ var jsonParser = bodyParser.json()
 
 // POST Add Client
 router.post('/addClient', jsonParser, function (req, res) {
-    //Very good practice but also send .res so the user can understand why
     if (!req.body) return res.sendStatus(400)
+    console.log("Add client",req.body);
     var newClient = new Client({
       "name": req.body.name,
-      "email": req.body.email,
+      "email": "aaa@gmail.com",
       "firstContact": new Date() ,
-      "emailType": ' ',
+      "emailType": '',
       "sold": false,
       "owner": req.body.ownerName,
       "country": req.body.countryName
     });
-    //Add callback function + err handling
-    //Make the code async so we only get reply if everything is working. if not then err
     newClient.save(
     (err, client) => {
-      if (err) throw err;
+      if (err) throw err
       else {
-        res.send({ "client_id": client._id})
+        res.send(client)
         }
       }
     );
   })
+//   router.post('/getClientByID', jsonParser, function (req, res) {
+// if (!req.body) return res.sendStatus(400)
+//   Post.findById(req.body.id, function(err, result){
+//         if (err) throw err;
+//         else {
+//           res.send({ "client": result})
+//           }
+//     })
+// })
+
   module.exports = router;
