@@ -112,9 +112,17 @@ class App extends Component {
     })
     return index;
   }
-  transfer = (clientName) => {
-    let client=this.findClientItemByStrKey(clientName,"name");
-    console.log("TRANSFER client",client);
+  transfer = (clientName,ownerName) => {
+    let client=this.findClientItemByStrKey(clientName,"name")[0];
+   
+    let clientIndex =this.findClientIndex(client["_id"]);
+    console.log("TRANSFER client",client," _id=",client["_id"],"index",clientIndex);
+    // let newState = [...this.state.clients];
+    // let clientItem = newState[clientIndex];
+    // clientItem["owner"]= ownerName;
+    // newState[clientIndex] = clientItem;
+    // this.setState({ clients: newState });
+    
   }
   send = (clientName) => {
     let client=this.findClientItemByStrKey(clientName,"name");
