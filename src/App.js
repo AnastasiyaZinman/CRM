@@ -22,7 +22,7 @@ class App extends Component {
   getData() {
     axios.get('http://localhost:5000/getData')
     .then(result => {
-      // console.log(result.data);
+      console.log(result.data);
       this.setState({ clients: result.data })
     })
 
