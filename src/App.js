@@ -36,17 +36,13 @@ class App extends Component {
     this.setState({ clients: newState });
     console.log("NEW LINE", this.state.clients[clientIndex])
   }
-  findClientItemByName(name){
-    alert(name);
-   
+  findClientItemByStrKey(strItem,key){
+    alert(strItem);
     return this.state.clients.filter(clientData => {
       console.log("clientData",clientData);
-      return clientData.name===name
+      return clientData[key]===strItem
     });
 
-  }
-  updateClientsDetailsByName(name){
-    this.findClientItemByName(name)
   }
   createNewClient = (name, surname, country, owner) => {
     let clientName =this.joinNameAndSername(name,surname);
@@ -72,7 +68,8 @@ class App extends Component {
     this.addNewClientToState(clientName,country,owner);
     console.log("Add to DB")
   }
-  addNewClientToState =(id,name,country,owner)=>{
+
+  addNewClientToState = (id,name,country,owner)=>{
      let newState= [...this.state.clients],
      newClient={
        "_id": id,
@@ -115,6 +112,16 @@ class App extends Component {
     })
     return index;
   }
+  transfer = (clientName) => {
+    let client=this.findClientItemByStrKey(clientName,"name");
+    console.log("TRANSFER client",client);
+  }
+  send = (clientName) => {
+    let client=this.findClientItemByStrKey(clientName,"name");
+  }
+  declare = (clientName) => {
+    let client=this.findClientItemByStrKey(clientName,"name");
+  }
   render() {
     console.log("Clients:", this.state.clients);
     return (
@@ -124,7 +131,14 @@ class App extends Component {
           <Route path="/" component={Menu} />
           <Route path="/clients" exact render={({ match }) =>
             <Clients match={match} clients={this.state.clients} updateClientDetails={this.updateClientDetails} />} />
-          <Route path="/actions" exact render={() => <Actions clients={this.state.clients} createNewClient={this.createNewClient} />} />
+          <Route path="/actions" exact render={() => 
+          <Actions 
+          clients={this.state.clients} 
+          createNewClient={this.createNewClient} 
+          transfer={this.transfer} 
+          send={this.send} 
+          declare={this.declare} 
+          />} />
           {/* <Route path="/analytics" exact render={({ match }) => <Analytics match= {match} movies={this.state.movies} />} />   */}
         </div>
       </Router>

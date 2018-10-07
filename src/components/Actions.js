@@ -33,11 +33,20 @@ class Actions extends Component {
     updateSelectedNameOption = (e) => {
         this.setState({selectedName: e.target.value})
       }
-    updateSelectedEmailTypeOption  = (e) => {
+    updateSelectedOwnerOption  = (e) => {
         this.setState({selectedOwner: e.target.value})
       }
-      updateSelectedOwnerOption = (e) => {
+      updateSelectedEmailTypeOption = (e) => {
         this.setState({selectedEmailType: e.target.value})
+      }
+      transfer = () => {
+          this.props.transfer(this.state.selectedName,this.state.selectedOwner)
+      }
+      send = () =>{
+        this.props.send(this.state.selectedName)
+      }
+      declare = () =>{
+        this.props.declare(this.state.selectedName)
       }
 
     render() {
@@ -63,7 +72,7 @@ class Actions extends Component {
             </select>
             </div>
             <div className="col-md-1">
-            <button type="button" className="btn update-btns btn-outline-warning">transfer</button>
+            <button type="button" className="btn update-btns btn-outline-warning" onClick={this.transfer}>transfer</button>
             </div>
              <div className="w-100 mt-2"></div>
              <div className="col-md-2">Send email:</div>
@@ -74,14 +83,14 @@ class Actions extends Component {
             </select>
              </div>
              <div className="col-md-1">
-             <button type="button" className="btn update-btns btn-outline-warning">send</button>
+             <button type="button" className="btn update-btns btn-outline-warning" onClick={this.send}>send</button>
              </div>
              <div className="w-100 mt-2"></div>
              <div className="col-md-2  ">Declare sale!</div>
              <div className="col-md-2">
              </div>
              <div className="col-md-1">
-             <button type="button" className="btn update-btns btn-outline-warning">Declare</button>
+             <button type="button" className="btn update-btns btn-outline-warning" onClick={this.declare}>Declare</button>
              </div>
      </div>
 
