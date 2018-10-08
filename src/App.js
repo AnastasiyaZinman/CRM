@@ -46,7 +46,7 @@ class App extends Component {
   }
   createNewClient = (name, surname, country, owner) => {
     let clientName =this.joinNameAndSername(name,surname);
-    console.log('login clicked')
+    console.log('login clicked', clientName," country", country,"ownerN",owner)
     let data = {
         name: clientName,
         countryName: country,
@@ -59,28 +59,30 @@ class App extends Component {
     }
     )
     .then(response => {
-      console.log("response",response.data.client_id);
-      this.addNewClientToState(response.data.client_id,name,country,owner)
+      console.log("response from DB",response);
+      this.addNewClientToState(response.data)
     })
     .catch(function (error) {
+      alert("Sorry, something wrong. New client haven't added.");
       console.log(error);
     });
-    this.addNewClientToState(clientName,country,owner);
     console.log("Add to DB")
   }
 
-  addNewClientToState = (id,name,country,owner)=>{
+  addNewClientToState = (newClientData) => {
+    console.log("new data from DB", newClientData);
      let newState= [...this.state.clients],
-     newClient={
-       "_id": id,
-      "name": name,
-      "email": "aaa@gmail.com",
-      "firstContact": new Date() ,
-      "emailType": '',
-      "sold": false,
-      "owner": owner,
-      "country": country
-     };
+     newClient=newClientData;
+    //  newClient= {
+    //    "_id": id,
+    //   "name": name,
+    //   "email": "aaa@gmail.com",
+    //   "firstContact": new Date() ,
+    //   "emailType": '',
+    //   "sold": false,
+    //   "owner": owner,
+    //   "country": country
+    //  };
      newState.push(newClient);
      this.setState({clients: newState})
      console.log("new state client",this.state.clients[this.state.clients.length-1]);
