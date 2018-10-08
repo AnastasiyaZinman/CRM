@@ -6,13 +6,13 @@ class Clients extends Component {
     constructor() {
         super();
         this.state = {
-            topNames:[{text:"Name",colSize:1},
-                      {text:"Surname",colSize:2},
-                      {text:"Country",colSize:1},
-                      {text:"First Contact",colSize:2},
-                      {text:"Email",colSize:3},
-                      {text:"Sold",colSize:1},
-                      {text:"Owner",colSize:2}],
+            topNames:[{text:"Name",colSize:1,valueForSearch:"name"},
+                      {text:"Surname",colSize:2,},
+                      {text:"Country",colSize:1, valueForSearch:"country"},
+                      {text:"First Contact",colSize:2, valueForSearch:"firstContact"},
+                      {text:"EmailType",colSize:3, valueForSearch:"emailType"},
+                      {text:"Sold",colSize:1, valueForSearch:"sold"},
+                      {text:"Owner",colSize:2, valueForSearch:"owner"}],
             searchWord:"",
             showComponent: false,
             currentClientInfo:'',
@@ -20,11 +20,18 @@ class Clients extends Component {
         }
     }
     filterClientsInfo = (clients) => {
+        
     var filterValue = this.state.selectedOption; //don't need convert toLowerCase bcz it'd done in generateOptions function
+    console.log("filterValue", filterValue,"clients");
     if (filterValue==="sold")
     return this.filterBySold(clients,filterValue)
-    else return clients.filter(clientData => clientData[filterValue].toLowerCase().includes(this.state.searchWord));
-      }
+    else {
+        return clients.filter(clientData => {
+            console.log(clientData[filterValue]);
+            if(clientData[filterValue]===null) clientData[filterValue]=" ";
+            return clientData[filterValue].toLowerCase().includes(this.state.searchWord);
+      })}
+    }
 
     filterBySold (clients,filterValue){
     let newar=[];
@@ -75,8 +82,9 @@ class Clients extends Component {
         return this.state.topNames.map((item, i) => {
             // console.log("item",item);
             if (item.text!=="Surname") {
-            let optionValue = (item.text!=="First Contact")? item.text.toLowerCase(): "firstContact";//item.text.split(' ').join('');
-                return (<option 
+            let optionValue = item.valueForSearch//(item.text!=="First Contact")? item.text.toLowerCase(): "firstContact";//item.text.split(' ').join('');
+            //item.text.split(' ').join('');            
+            return (<option 
                 value={optionValue}
                 key={i}>{item.text}
                </option>)   //the power of JSX!
