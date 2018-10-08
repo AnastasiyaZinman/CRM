@@ -39,9 +39,9 @@ class App extends Component {
   findClientItemByStrKey(strItem,key){
     alert(strItem);
     return this.state.clients.filter(clientData => {
-      console.log("clientData",clientData);
+      // console.log("clientData",clientData);
       return clientData[key]===strItem
-    });
+    })[0];
 
   }
   createNewClient = (name, surname, country, owner) => {
@@ -112,23 +112,21 @@ class App extends Component {
     })
     return index;
   }
-  transfer = (clientName,ownerName) => {
-    let client=this.findClientItemByStrKey(clientName,"name")[0];
-   
+   actionsChangesTSD = (clientName,key,newProperty) => {
+    let client=this.findClientItemByStrKey(clientName,"name");
     let clientIndex =this.findClientIndex(client["_id"]);
     console.log("TRANSFER client",client," _id=",client["_id"],"index",clientIndex);
-    // let newState = [...this.state.clients];
-    // let clientItem = newState[clientIndex];
-    // clientItem["owner"]= ownerName;
-    // newState[clientIndex] = clientItem;
-    // this.setState({ clients: newState });
+    let newState = [...this.state.clients];
+    let clientItem = newState[clientIndex];
+    (key!=="sold")?clientItem[key]= newProperty:clientItem[key]=true;
+    newState[clientIndex] = clientItem;
+    this.setState({ clients: newState });
     
   }
-  send = (clientName) => {
-    let client=this.findClientItemByStrKey(clientName,"name");
-  }
+
   declare = (clientName) => {
     let client=this.findClientItemByStrKey(clientName,"name");
+
   }
   render() {
     console.log("Clients:", this.state.clients);
@@ -143,9 +141,7 @@ class App extends Component {
           <Actions 
           clients={this.state.clients} 
           createNewClient={this.createNewClient} 
-          transfer={this.transfer} 
-          send={this.send} 
-          declare={this.declare} 
+          actionsChangesTSD={this.actionsChangesTSD} 
           />} />
           {/* <Route path="/analytics" exact render={({ match }) => <Analytics match= {match} movies={this.state.movies} />} />   */}
         </div>

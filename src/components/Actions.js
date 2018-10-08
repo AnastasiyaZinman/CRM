@@ -40,15 +40,27 @@ class Actions extends Component {
         this.setState({selectedEmailType: e.target.value})
       }
       transfer = () => {
-          this.props.transfer(this.state.selectedName,this.state.selectedOwner)
-      }
-      send = () =>{
-        this.props.send(this.state.selectedName)
-      }
-      declare = () =>{
-        this.props.declare(this.state.selectedName)
-      }
+        // alert("transfer",this.state.selectedName," ",this.state.selectedOwner);
+        if (this.state.selectedName!=='' && this.state.selectedOwner!=='')
+        this.props.actionsChangesTSD(this.state.selectedName,"owner",this.state.selectedOwner);
+        else alert("Select options!");
+        // this.clearActionsState("owner");
+    }
+    send = () =>{
+        // alert("send",this.state.selectedName," ",this.state.selectedEmailType );
+        
+      if(this.state.selectedName!=='' && this.state.selectedEmailType!=='Email Type')
+      this.props.actionsChangesTSD(this.state.selectedName,"emailType",this.state.selectedEmailType);
+      else alert("Select options!");
+      //   this.clearActionsState("emailType");
 
+    }
+    declare = () =>{
+        alert("declare");
+     if(this.state.selectedName!=='')
+      this.props.actionsChangesTSD(this.state.selectedName,"sold")
+      else alert("select client name");
+    }
     render() {
         console.log("AAAAA",this.state);
     return (
