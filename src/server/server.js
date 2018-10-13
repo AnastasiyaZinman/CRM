@@ -37,7 +37,7 @@ app.get('/getData', function (req, res) {
     // res.json(fakeDb);
   Client.find(function (error, result){
   if(error) { return console.error(error); }
-  console.log (result);
+//   console.log (result);
   res.json(result);
 });
 });

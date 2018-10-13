@@ -22,12 +22,12 @@ class Clients extends Component {
     filterClientsInfo = (clients) => {
         
     var filterValue = this.state.selectedOption; //don't need convert toLowerCase bcz it'd done in generateOptions function
-    console.log("filterValue", filterValue,"clients");
+    // console.log("filterValue", filterValue,"clients");
     if (filterValue==="sold")
     return this.filterBySold(clients,filterValue)
     else {
         return clients.filter(clientData => {
-            console.log(clientData[filterValue]);
+            // console.log(clientData[filterValue]);
             if(clientData[filterValue]===null) clientData[filterValue]=" ";
             return clientData[filterValue].toLowerCase().includes(this.state.searchWord);
       })}

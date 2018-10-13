@@ -18,8 +18,9 @@ class ClientInfo extends Component {
         newName = this.state.newName, 
         newSurname = this.state.newSurname, 
         newCountry = this.state.newCountry;
-        if (newName || newSurname || newCountry) this.props.updateClientDetails(newName,newSurname,newCountry,id);
-        else alert ("Nothing change!");
+        if (newName && newSurname || newCountry) this.props.updateClientDetails(newName,newSurname,newCountry,id)
+        else if (!newName && !newSurname && !newCountry) alert ("Nothing to change!")
+        else if (!newName || !newSurname) alert("Please, change full name. Name hasn't changed")
         this.closeBox();
     }
 

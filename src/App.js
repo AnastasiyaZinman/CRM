@@ -34,8 +34,11 @@ class App extends Component {
     clientItem = this.changeDataItem(clientItem, name, surname, country);
     newState[clientIndex] = clientItem;
     this.setState({ clients: newState });
+    this.updateClientDetailsDB(clientItem);
     console.log("NEW LINE", this.state.clients[clientIndex])
   }
+
+
   findClientItemByStrKey(strItem,key){
     alert(strItem);
     return this.state.clients.filter(clientData => {
@@ -66,7 +69,26 @@ class App extends Component {
       alert("Sorry, something wrong. New client haven't added.");
       console.log(error);
     });
-    console.log("Add to DB")
+    console.log("Added to DB")
+  }
+
+  updateClientDetailsDB = (data) =>{
+    console.log('DATA FOR DB', data);
+    axios.post('http://localhost:5000/updateClientInfo', data, {
+          headers: {
+              'Content-Type': 'application/json',
+          }
+      }
+      )
+      .then(response => {
+        console.log("response from DB",response);
+        // this.addNewClientToState(response.data)
+      })
+      .catch(function (error) {
+        alert("Sorry, something wrong. New client haven't added.");
+        console.log(error);
+      });
+      console.log("Updated in DB")
   }
 
   addNewClientToState = (newClientData) => {
@@ -94,9 +116,7 @@ class App extends Component {
   changeDataItem(clientItem, n, s, c) {
     if (n && s) {
       clientItem["name"] = this.joinNameAndSername(n, s);
-      // alert(clientItem["name"])
     }
-    else if (n || s) alert("Please, change fuul name. Name hasn't changed");
     if (c) {
       clientItem["country"] = c;
     }
@@ -123,7 +143,7 @@ class App extends Component {
     (key!=="sold")?clientItem[key]= newProperty:clientItem[key]=true;
     newState[clientIndex] = clientItem;
     this.setState({ clients: newState });
-    
+    this.updateClientDetailsDB(clientItem);
   }
 
   declare = (clientName) => {

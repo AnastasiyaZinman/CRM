@@ -62,7 +62,7 @@ class Actions extends Component {
       else alert("select client name");
     }
     render() {
-        console.log("AAAAA",this.state);
+        // console.log("AAAAA",this.state);
     return (
         <div className="action-box">
          <h3>UPDATE</h3>
