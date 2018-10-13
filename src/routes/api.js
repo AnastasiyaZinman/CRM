@@ -33,26 +33,13 @@ router.post('/addClient', jsonParser, function (req, res) {
     if (!req.body) return res.sendStatus(400)
     console.log("Update client_id",req.body._id);
     let id=req.body["_id"];
-    Post.findById(id, function(err, result){
+    Client.findByIdAndUpdate(id,req.body,{new: true}, function(err, result){
       if(err){
         console.log(err);
       }
-      result.owner=req.body.owner;
-      //Notice you can control the var name anyware;
-      Post.findByIdAndUpdate(id,result, function(err, new_result){
-        if(err){
-          console.log(err);
-        }
-        res.send(new_result);
-      });
+      console.log("result updated",result);
+      res.send(result);
     });
-    // Client.findByIdAndUpdate(id,req.body, function(err, result){
-    //   if(err){
-    //     console.log(err);
-    //   }
-    //   console.log("result update",result);
-    //   res.send(result);
-    // });
   })
   
 //   router.post('/getClientByID', jsonParser, function (req, res) {
