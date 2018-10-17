@@ -2,6 +2,7 @@ var { Client } = require('../models/clientModel');
 const express = require('express')
 //---------------------------------------
 const router = express.Router()
+// const sequelize  = require('../dataAccess/da');
 //----------------Post-----
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json()

@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Actions from './components/Actions.js';
 import Menu from './components/Menu.js';
 import Clients from './components/Clients.js';
+import Analytics from './components/Analytics';
+
 
 class App extends Component {
   constructor() {
@@ -165,7 +167,7 @@ class App extends Component {
           createNewClient={this.createNewClient} 
           actionsChangesTSD={this.actionsChangesTSD} 
           />} />
-          {/* <Route path="/analytics" exact render={({ match }) => <Analytics match= {match} movies={this.state.movies} />} />   */}
+          <Route path="/analytics" exact render={({ match }) => <Analytics />} />  
         </div>
       </Router>
     );
